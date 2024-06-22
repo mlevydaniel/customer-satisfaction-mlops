@@ -98,10 +98,14 @@ class LinearRegressionModel(Model):
     LinearRegressionModel that implements the Model interface.
     """
 
-    def train(self, x_train, y_train, **kwargs):
-        reg = LinearRegression(**kwargs)
-        reg.fit(x_train, y_train)
-        return reg
+    def train(self, X_train, y_train, **kwargs):
+        try:
+            reg = LinearRegression(**kwargs)
+            reg.fit(X_train, y_train)
+            return reg
+        except Exception as e:
+            logging.error(f"Error while training model: {e}")
+            raise e
 
     # For linear regression, there might not be hyperparameters that we want to tune, so we can simply return the score
     def optimize(self, trial, x_train, y_train, x_test, y_test):

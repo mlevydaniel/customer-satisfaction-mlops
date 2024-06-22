@@ -88,3 +88,9 @@ class DataCleaning:
     def handle_data(self) -> Union[pd.DataFrame, pd.Series]:
         """Handle data based on the provided strategy"""
         return self.strategy.handle_data(self.df)
+
+
+if __name__ == "__main__":
+    data = pd.read_csv("data/olist_order_items_dataset.csv")
+    data_cleaning = DataCleaning(pd.DataFrame(), DataPreprocessStrategy())
+    data_cleaning.handle_data()
